@@ -113,7 +113,7 @@ void initialize_everything(int argc, char **argv)
 		error(1, 0, "NEON is not available.");
 
 	/* gather system info */
-	fd = open("/sys/kernel/debug/clk/hps_0_eosc1-clk/main_pll/mpuclk/clk_rate", O_RDONLY);
+	fd = open("/sys/kernel/debug/clk/osc1/main_pll/mpuclk/clk_rate", O_RDONLY);
 	if(fd < 0)
 		error(1, errno, "opening sysfs mpuclk/clk_rate");
 		
@@ -124,7 +124,7 @@ void initialize_everything(int argc, char **argv)
 	close(fd);
 	g_mpuclk_rate = atoi(in_str);
 	
-	fd = open("/sys/kernel/debug/clk/hps_0_eosc1-clk/main_pll/mpuclk/mpu_periph_clk/clk_rate", O_RDONLY);
+	fd = open("/sys/kernel/debug/clk/osc1/main_pll/mpuclk/mpu_periph_clk/clk_rate", O_RDONLY);
 	if(fd < 0)
 		error(1, errno, "opening sysfs mpu_periph_clk/clk_rate");
 		
@@ -135,13 +135,13 @@ void initialize_everything(int argc, char **argv)
 	close(fd);
 	g_mpu_periph_clk_rate = atoi(in_str);
 	
-	fd = open("/sys/kernel/debug/clk/fft_sub_clk_0-clk/clk_rate", O_RDONLY);
+	fd = open("/sys/kernel/debug/clk/fft_sub_clk_0/clk_rate", O_RDONLY);
 	if(fd < 0)
-		error(1, errno, "opening sysfs fft_sub_clk_0-clk/clk_rate");
+		error(1, errno, "opening sysfs fft_sub_clk_0/clk_rate");
 		
 	result = read(fd, in_str, 16);
 	if (result < 0)
-		error(1, errno, "reading sysfs fft_sub_clk_0-clk/clk_rate");
+		error(1, errno, "reading sysfs fft_sub_clk_0/clk_rate");
 		
 	close(fd);
 	g_fft_sub_clk_0_clk_rate = atoi(in_str);
