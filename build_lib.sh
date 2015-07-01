@@ -7,16 +7,16 @@ type -t arm-angstrom-linux-gnueabi-gcc > /dev/null 2>&1 || {
 	exit 1
 }
 
-[ -d './Ne10/inc' ] || {
+[ -d './Ne10-master/inc' ] || {
 	echo ""
-	echo "ERROR: cannot locate include directory './Ne10/inc'."
+	echo "ERROR: cannot locate include directory './Ne10-master/inc'."
 	echo ""
 	exit 1
 }
 
-[ -f './Ne10/build/modules/libNE10.a' ] || {
+[ -f './Ne10-master/build/modules/libNE10.a' ] || {
 	echo ""
-	echo "ERROR: cannot locate library archive './Ne10/build/modules/libNE10.a'."
+	echo "ERROR: cannot locate library archive './Ne10-master/build/modules/libNE10.a'."
 	echo ""
 	exit 1
 }
@@ -62,7 +62,7 @@ arm-angstrom-linux-gnueabi-gcc \
 	-Wwrite-strings \
 	-Wstrict-prototypes \
 	-pedantic \
-	-I./Ne10/inc \
+	-I./Ne10-master/inc \
 	-o "${1}.o" \
 	-c \
 	"${1}.c"
