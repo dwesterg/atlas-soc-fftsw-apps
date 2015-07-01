@@ -41,42 +41,34 @@ LIB_LIST="
 overhead
 "
 
-MISC_LIST="
-fft.tgz
-fft_src.tgz
-"
+type -t gcc > /dev/null 2>&1 || {
+	echo ""
+	echo "ERROR: cross compiler tools are not visible in the environment."
+	echo ""
+	exit 1
+}
+
+[ -d './Ne10-master/inc' ] || {
+	echo ""
+	echo "ERROR: cannot locate include directory './Ne10-master/inc'."
+	echo ""
+	exit 1
+}
+
+[ -f './Ne10-master/build/modules/libNE10.a' ] || {
+	echo ""
+	echo "ERROR: cannot locate library archive './Ne10-master/build/modules/libNE10.a'."
+	echo ""
+	exit 1
+}
 
 for NEXT in ${LIB_LIST}
 do
-	[ -f "lib${NEXT}.a" ] && {
-		echo "removing lib${NEXT}.a"
-		rm "lib${NEXT}.a"
-	}
-
-	[ -f "${NEXT}.o" ] && {
-		echo "removing ${NEXT}.o"
-		rm "${NEXT}.o"
-	}
+	./target_build_lib.sh "${NEXT}"
 done
 
 for NEXT in ${APP_LIST}
 do
-	[ -f "${NEXT}" ] && {
-		echo "removing ${NEXT}"
-		rm "${NEXT}"
-	}
-
-	[ -f "${NEXT}.o" ] && {
-		echo "removing ${NEXT}.o"
-		rm "${NEXT}.o"
-	}
-done
-
-for NEXT in ${MISC_LIST}
-do
-	[ -f "${NEXT}" ] && {
-		echo "removing ${NEXT}"
-		rm "${NEXT}"
-	}
+	./target_build_app.sh "${NEXT}"
 done
 
