@@ -44,6 +44,7 @@ overhead
 MISC_LIST="
 fft.tgz
 fft_src.tgz
+fft_sandbox.tgz
 "
 
 for NEXT in ${LIB_LIST}
