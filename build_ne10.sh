@@ -9,7 +9,8 @@ cd $(dirname ${0})
 	exit 1
 }
 
-type -t ${CC:?} > /dev/null 2>&1 || {
+CC_TEST="${CC:?}"
+type -t ${CC%${CC#*gcc}} > /dev/null 2>&1 || {
 	echo ""
 	echo "ERROR: cross compiler tools are not visible in the environment."
 	echo ""
@@ -48,7 +49,7 @@ unzip Ne10-master.zip
 cd Ne10-master
 
 sed \
-	-i "s/arm-linux-gnueabihf-/${CC%gcc}/g" \
+	-i "s/arm-linux-gnueabihf-/${CC%gcc${CC#*gcc}}/g" \
 	GNUlinux_config.cmake
 
 mkdir build && cd build

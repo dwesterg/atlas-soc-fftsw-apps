@@ -41,7 +41,8 @@ LIB_LIST="
 overhead
 "
 
-type -t ${CC:?} > /dev/null 2>&1 || {
+CC_TEST="${CC:?}"
+type -t ${CC%${CC#*gcc}} > /dev/null 2>&1 || {
 	echo ""
 	echo "ERROR: cross compiler tools are not visible in the environment."
 	echo ""
