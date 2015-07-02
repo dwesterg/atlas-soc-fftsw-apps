@@ -1,6 +1,6 @@
 #!/bin/sh
 
-type -t arm-angstrom-linux-gnueabi-gcc > /dev/null 2>&1 || {
+type -t ${CC:?} > /dev/null 2>&1 || {
 	echo ""
 	echo "ERROR: cross compiler tools are not visible in the environment."
 	echo ""
@@ -45,7 +45,7 @@ type -t arm-angstrom-linux-gnueabi-gcc > /dev/null 2>&1 || {
 	exit 1
 }
 
-arm-angstrom-linux-gnueabi-gcc \
+${CC:?} \
 	-march=armv7-a \
 	-mfloat-abi=hard \
 	-mfpu=vfp3 \
@@ -75,7 +75,7 @@ arm-angstrom-linux-gnueabi-gcc \
 	exit 1
 }
 
-arm-angstrom-linux-gnueabi-ar \
+${AR:?} \
 	-r \
 	"lib${1}.a" \
 	"${1}.o"

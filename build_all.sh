@@ -41,7 +41,7 @@ LIB_LIST="
 overhead
 "
 
-type -t arm-angstrom-linux-gnueabi-gcc > /dev/null 2>&1 || {
+type -t ${CC:?} > /dev/null 2>&1 || {
 	echo ""
 	echo "ERROR: cross compiler tools are not visible in the environment."
 	echo ""
