@@ -56,7 +56,7 @@ utility.  We can convert the two output data files like this:
 
 fft_sandbox# cat output_waveforms/fftdma_256_sine.bin | \
 	./ne10cpx_long_to_text > output_waveforms/fftdma_256_sine.txt
-	
+
 fft_sandbox# cat output_waveforms/neon32_256_sine.bin | \
 	./ne10cpx_long_to_text > output_waveforms/neon32_256_sine.txt
 
@@ -67,7 +67,7 @@ fft_sandbox# ls output_waveforms/
 fftdma_256_sine.bin  neon32_256_sine.bin
 fftdma_256_sine.txt  neon32_256_sine.txt
 
-Now we can have gnuplot plot the data from the text files like this:
+Next we can have gnuplot plot the data from the text files like this:
 
 fft_sandbox# gnuplot -d -e '
 set terminal pngcairo background "#FFFFFF" fontscale 1.0 size 1024, 768;
@@ -83,26 +83,49 @@ set title "neon32_256_sine";
 plot for [i=1:2] "output_waveforms/neon32_256_sine.txt"
 using i with line title columnhead;'
 
-And now we should see the PNG files in out output directory along with the
+And now we should see the PNG files in the output directory along with the
 binary and text files:
 
 fft_sandbox# ls output_waveforms/
 fftdma_256_sine.bin  fftdma_256_sine.txt  neon32_256_sine.png
 fftdma_256_sine.png  neon32_256_sine.bin  neon32_256_sine.txt
 
-So to view these images, we can copy them over to the images directory that the
+Let's convert the input waveform into a PNG so that we can "see" that as well.
+We follow the same steps as above.
+
+fft_sandbox# cat input_waveforms/ne10cpx_long_sine256.bin | \
+	./ne10cpx_long_to_text > input_waveforms/ne10cpx_long_sine256.txt
+
+fft_sandbox# gnuplot -d -e '
+set terminal pngcairo background "#FFFFFF" fontscale 1.0 size 1024, 768;
+set output "input_waveforms/ne10cpx_long_sine256.png" ;
+set title "input_256_sine" ;
+plot for [i=1:2] "input_waveforms/ne10cpx_long_sine256.txt"
+using i with line title columnhead ;'
+
+Now lets put all the images together into one large montage.
+
+montage.im6 \
+	-background '#000000' \
+	-font Liberation-Mono \
+	"input_waveforms/ne10cpx_long_sine256.png" \
+	"output_waveforms/neon32_256_sine.png" \
+	"output_waveforms/fftdma_256_sine.png" \
+	-tile 1x3 \
+	-geometry +5+5 \
+	sines_256.png
+
+To view this montage, we can copy it over to the images directory that the
 web server is pulling from on the Atlas target system.  That directory is
-'/usr/share/atlas-soc-101/images' so we can copy the image files like this:
+'/usr/share/atlas-soc-101/images', so we can copy the montage file like this:
 
 fft_sandbox# cp \
-	output_waveforms/fftdma_256_sine.png \
-	output_waveforms/neon32_256_sine.png \
+	sines_256.png \
 	/usr/share/atlas-soc-101/images/
 
-Now to view the images, we need to start a web browser on our host machine and
-surf to the image on the Altas target, each image will be visible at the
-following URLs:
+To view the montage, we need to start a web browser on our host machine and
+surf to the image on the Altas target, the montage will be visible at the
+following URL:
 
-<Atlas-ip-address>/images/fftdma_256_sine.png
-<Atlas-ip-address>/images/neon32_256_sine.png
+<Atlas-ip-address>/images/sines_256.png
 
