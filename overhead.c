@@ -113,7 +113,7 @@ void initialize_everything(int argc, char **argv)
 		error(1, 0, "NEON is not available.");
 
 	/* gather system info */
-	fd = open("/sys/kernel/debug/clk/osc1/main_pll/mpuclk/clk_rate", O_RDONLY);
+	fd = open("/sys/kernel/debug/clk/mpuclk/clk_rate", O_RDONLY);
 	if(fd < 0)
 		error(1, errno, "opening sysfs mpuclk/clk_rate");
 		
@@ -124,7 +124,7 @@ void initialize_everything(int argc, char **argv)
 	close(fd);
 	g_mpuclk_rate = atoi(in_str);
 	
-	fd = open("/sys/kernel/debug/clk/osc1/main_pll/mpuclk/mpu_periph_clk/clk_rate", O_RDONLY);
+	fd = open("/sys/kernel/debug/clk/mpu_periph_clk/clk_rate", O_RDONLY);
 	if(fd < 0)
 		error(1, errno, "opening sysfs mpu_periph_clk/clk_rate");
 		
