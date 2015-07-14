@@ -107,7 +107,7 @@ Now lets put all the images together into one large montage.
 
 montage.im6 \
 	-background '#000000' \
-	-font Liberation-Mono \
+	-font Liberation-Mono-Regular \
 	"input_waveforms/ne10cpx_long_sine256.png" \
 	"output_waveforms/neon32_256_sine.png" \
 	"output_waveforms/fftdma_256_sine.png" \
