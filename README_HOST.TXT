@@ -18,10 +18,13 @@ Description of directory contents:
 
 build_ne10.sh
 	host script to build the ne10 library
+	
 build_all.sh
 	host script to build all applications and libraries, except ne10 library
+	
 build_app.sh
 	host script to build one application
+	
 build_lib.sh
 	host script to build one library
 

@@ -1,5 +1,5 @@
 To build the applications in this directory, you should be able to run these
-host scripts in this order:
+target scripts in this order:
 
 ./target_build_ne10.sh
 	this will build the ne10 library into a directory 'Ne10-master'
@@ -11,16 +11,20 @@ At this point everything should be built.
 Description of directory contents:
 
 target_build_ne10.sh
-	host script to build the ne10 library
+	target script to build the ne10 library
+
 sandbox_build_all.sh
-	host script to build all applications and libraries, except ne10 library
+	target script to build all applications and libraries, except ne10
+	library
+
 target_build_app.sh
-	host script to build one application
+	target script to build one application
+
 target_build_lib.sh
-	host script to build one library
+	target script to build one library
 
 clean_all.sh
-	host script to clean all build objects
+	target script to clean all build objects
 
 create_input_waveforms.sh
 	target script that executes waveform creation applications and
