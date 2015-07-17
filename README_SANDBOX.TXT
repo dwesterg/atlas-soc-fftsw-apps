@@ -105,7 +105,7 @@ using i with line title columnhead ;'
 
 Now lets put all the images together into one large montage.
 
-montage.im6 \
+montage \
 	-background '#000000' \
 	-font Liberation-Mono-Regular \
 	"input_waveforms/ne10cpx_long_sine256.png" \
@@ -115,9 +115,11 @@ montage.im6 \
 	-geometry +5+5 \
 	sines_256.png
 
-To view this montage, we can copy it over to the images directory that the
-web server is pulling from on the Atlas target system.  That directory is
-'/usr/share/atlas-soc-101/images', so we can copy the montage file like this:
+VIEW MONTAGE IMAGE IN WEB BROWSER
+To view this montage in a web browser, we can copy it over to the images
+directory that the web server is pulling from on the Atlas target system.  That
+directory is '/usr/share/atlas-soc-101/images', so we can copy the montage file
+like this:
 
 fft_sandbox# cp \
 	sines_256.png \
@@ -128,4 +130,10 @@ surf to the image on the Altas target, the montage will be visible at the
 following URL:
 
 <Atlas-ip-address>/images/sines_256.png
+
+VIEW MONTAGE IMAGE IN VNC SESSION
+To view this montage in a VNC session, simply run the 'display' image viewer
+application:
+
+fft_sandbox# display sines_256.png
 
