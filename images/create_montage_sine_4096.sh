@@ -2,6 +2,7 @@
 
 montage \
 	-background '#000000' \
+	-font Liberation-Mono-Regular \
 	c16_4096_sine.png \
 	c32_4096_sine.png \
 	fft_4096_sine.png \

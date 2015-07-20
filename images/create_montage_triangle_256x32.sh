@@ -2,6 +2,7 @@
 
 montage \
 	-background '#000000' \
+	-font Liberation-Mono-Regular \
 	c16_256x32_triangle.png \
 	c32_256x32_triangle.png \
 	fft_256x32_triangle.png \

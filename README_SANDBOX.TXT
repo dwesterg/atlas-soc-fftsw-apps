@@ -9,7 +9,7 @@ just built.  These programs require some input waveform data to feed into the
 FFT algorithm and they output the real and imaginary FFT results.  To create the
 input waveform data we can run this script:
 
-fft_sandbox# ./sandbox_create_input_waveforms.sh
+sandbox# ./sandbox_create_input_waveforms.sh
 
 The 'sandbox_create_input_waveforms.sh' script runs a few of the utiltiy
 programs that we just build along with some of the utility scripts to create
@@ -17,7 +17,7 @@ some input waveform patterns that we can feed into the 'fftdma_256' and
 'neon32_256' programs.  After we run this script we should see the following
 output that it created:
 
-fft_sandbox# ls input_waveforms/ output_waveforms/
+sandbox# ls input_waveforms/ output_waveforms/
 input_waveforms/:
 ne10cpx_long_sine256.bin       ne10cpx_short_sine256.bin
 ne10cpx_long_square256.bin     ne10cpx_short_square256.bin
@@ -31,18 +31,18 @@ The 'fftdma_256' program consumes 16-bit sample inputs which is what the
 
 Now we're ready to run the programs.  Execute each program like this:
 
-fft_sandbox# ./fftdma_256 \
+sandbox# ./fftdma_256 \
 	--input=input_waveforms/ne10cpx_short_sine256.bin \
 	--output=output_waveforms/fftdma_256_sine.bin
 
-fft_sandbox# ./neon32_256 \
+sandbox# ./neon32_256 \
 	--input=input_waveforms/ne10cpx_long_sine256.bin \
 	--output=output_waveforms/neon32_256_sine.bin
 
 And now we should see the raw binary output from the two program executions,
 like this:
 
-fft_sandbox# ls output_waveforms/
+sandbox# ls output_waveforms/
 fftdma_256_sine.bin  neon32_256_sine.bin
 
 You can see the raw data by dumping it with 'hexdump -Cv', but if we really want
@@ -54,29 +54,29 @@ binary data into a text file that 'gnuplot' can digest.  We have previously
 compiled a utility program that can help us do that, the 'ne10cpx_long_to_text'
 utility.  We can convert the two output data files like this:
 
-fft_sandbox# cat output_waveforms/fftdma_256_sine.bin | \
+sandbox# cat output_waveforms/fftdma_256_sine.bin | \
 	./ne10cpx_long_to_text > output_waveforms/fftdma_256_sine.txt
 
-fft_sandbox# cat output_waveforms/neon32_256_sine.bin | \
+sandbox# cat output_waveforms/neon32_256_sine.bin | \
 	./ne10cpx_long_to_text > output_waveforms/neon32_256_sine.txt
 
 And now we should see the binary output files along with the converted text
 files in the output directory:
 	
-fft_sandbox# ls output_waveforms/
+sandbox# ls output_waveforms/
 fftdma_256_sine.bin  neon32_256_sine.bin
 fftdma_256_sine.txt  neon32_256_sine.txt
 
 Next we can have gnuplot plot the data from the text files like this:
 
-fft_sandbox# gnuplot -d -e '
+sandbox# gnuplot -d -e '
 set terminal pngcairo background "#FFFFFF" fontscale 1.0 size 1024, 768;
 set output "output_waveforms/fftdma_256_sine.png";
 set title "fftdma_256_sine";
 plot for [i=1:2] "output_waveforms/fftdma_256_sine.txt"
 using i with line title columnhead;'
 
-fft_sandbox# gnuplot -d -e '
+sandbox# gnuplot -d -e '
 set terminal pngcairo background "#FFFFFF" fontscale 1.0 size 1024, 768;
 set output "output_waveforms/neon32_256_sine.png";
 set title "neon32_256_sine";
@@ -86,17 +86,17 @@ using i with line title columnhead;'
 And now we should see the PNG files in the output directory along with the
 binary and text files:
 
-fft_sandbox# ls output_waveforms/
+sandbox# ls output_waveforms/
 fftdma_256_sine.bin  fftdma_256_sine.txt  neon32_256_sine.png
 fftdma_256_sine.png  neon32_256_sine.bin  neon32_256_sine.txt
 
 Let's convert the input waveform into a PNG so that we can "see" that as well.
 We follow the same steps as above.
 
-fft_sandbox# cat input_waveforms/ne10cpx_long_sine256.bin | \
+sandbox# cat input_waveforms/ne10cpx_long_sine256.bin | \
 	./ne10cpx_long_to_text > input_waveforms/ne10cpx_long_sine256.txt
 
-fft_sandbox# gnuplot -d -e '
+sandbox# gnuplot -d -e '
 set terminal pngcairo background "#FFFFFF" fontscale 1.0 size 1024, 768;
 set output "input_waveforms/ne10cpx_long_sine256.png" ;
 set title "input_256_sine" ;
@@ -105,7 +105,7 @@ using i with line title columnhead ;'
 
 Now lets put all the images together into one large montage.
 
-montage \
+sandbox# montage \
 	-background '#000000' \
 	-font Liberation-Mono-Regular \
 	"input_waveforms/ne10cpx_long_sine256.png" \
@@ -121,7 +121,7 @@ directory that the web server is pulling from on the Atlas target system.  That
 directory is '/usr/share/atlas-soc-101/images', so we can copy the montage file
 like this:
 
-fft_sandbox# cp \
+sandbox# cp \
 	sines_256.png \
 	/usr/share/atlas-soc-101/images/
 
@@ -135,5 +135,5 @@ VIEW MONTAGE IMAGE IN VNC SESSION
 To view this montage in a VNC session, simply run the 'display' image viewer
 application:
 
-fft_sandbox# display sines_256.png
+sandbox# display sines_256.png
 

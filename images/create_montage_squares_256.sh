@@ -2,6 +2,7 @@
 
 montage \
 	-background '#000000' \
+	-font Liberation-Mono-Regular \
 	c16_256_square.png \
 	c32_256_square.png \
 	fft_256_square.png \
