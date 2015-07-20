@@ -75,6 +75,7 @@ images/create_montage_squares_4096.sh
 images/create_montage_triangle_256.sh
 images/create_montage_triangle_256x32.sh
 images/create_montage_triangle_4096.sh
+images/README_IMAGES.TXT
 "
 
 for NEXT in ${COPY_LIST}
