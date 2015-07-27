@@ -80,8 +80,14 @@ neon32_4096
 	algorithm for a variety of input sample sizes with 32-bit resolution
 
 stream_fpga_256x32x128
+stream_fpga_256x16x1
+stream_fpga_256x1x1
 stream_neon32_256x32x128
+stream_neon32_256x16x1
+stream_neon32_256x1x1
 stream_raw_256x32x128
+stream_raw_256x16x1
+stream_raw_256x1x1
 	these applications stream data from the FPGA into ramdisk files, the
 	fpga variant DMAs the input stream thru the FPGA FFT logic before it
 	is DMAed through the ACP port of the Cortex A9, the neon variant DMAs

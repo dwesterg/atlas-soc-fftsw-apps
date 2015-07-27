@@ -63,6 +63,8 @@ run_fft_256x32.sh
 run_fft_256x32x128.sh
 run_fft_4096.sh
 run_stream_256x32x128.sh
+run_stream_256x16x1.sh
+run_stream_256x1x1.sh
 	these target scripts execute all of the various permutations of the demo
 	applications mentioned below
 	
@@ -121,8 +123,14 @@ neon32_4096.c
 	algorithm for a variety of input sample sizes with 32-bit resolution
 
 stream_fpga_256x32x128.c
+stream_fpga_256x16x1.c
+stream_fpga_256x1x1.c
 stream_neon32_256x32x128.c
+stream_neon32_256x16x1.c
+stream_neon32_256x1x1.c
 stream_raw_256x32x128.c
+stream_raw_256x16x1.c
+stream_raw_256x1x1.c
 	these applications stream data from the FPGA into ramdisk files, the
 	fpga variant DMAs the input stream thru the FPGA FFT logic before it
 	is DMAed through the ACP port of the Cortex A9, the neon variant DMAs

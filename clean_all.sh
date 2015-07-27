@@ -33,8 +33,14 @@ fftdma_256x32x128
 neon16_256x32x128
 neon32_256x32x128
 stream_fpga_256x32x128
+stream_fpga_256x16x1
+stream_fpga_256x1x1
 stream_neon32_256x32x128
+stream_neon32_256x16x1
+stream_neon32_256x1x1
 stream_raw_256x32x128
+stream_raw_256x16x1
+stream_raw_256x1x1
 "
 
 LIB_LIST="

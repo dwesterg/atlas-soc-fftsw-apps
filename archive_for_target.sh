@@ -12,6 +12,8 @@ run_fft_4096.sh
 run_fft_256x32.sh
 run_fft_256x32x128.sh
 run_stream_256x32x128.sh
+run_stream_256x16x1.sh
+run_stream_256x1x1.sh
 create_real_short_sine32
 create_real_short_square32
 create_real_short_triangle32
@@ -44,8 +46,14 @@ fftdma_256x32x128
 neon16_256x32x128
 neon32_256x32x128
 stream_fpga_256x32x128
+stream_fpga_256x16x1
+stream_fpga_256x1x1
 stream_neon32_256x32x128
+stream_neon32_256x16x1
+stream_neon32_256x1x1
 stream_raw_256x32x128
+stream_raw_256x16x1
+stream_raw_256x1x1
 "
 
 for NEXT in ${COPY_LIST}

@@ -17,4 +17,8 @@ echo "running run_fft_4096.sh"
 ./run_fft_4096.sh
 echo "running run_stream_256x32x128.sh"
 ./run_stream_256x32x128.sh
+echo "running run_stream_256x16x1.sh"
+./run_stream_256x16x1.sh
+echo "running run_stream_256x1x1.sh"
+./run_stream_256x1x1.sh
 

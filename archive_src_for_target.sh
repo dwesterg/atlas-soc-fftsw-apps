@@ -35,8 +35,14 @@ overhead.c
 real_short_to_ne10cpx_long.c
 real_short_to_ne10cpx_short.c
 stream_fpga_256x32x128.c
+stream_fpga_256x16x1.c
+stream_fpga_256x1x1.c
 stream_neon32_256x32x128.c
+stream_neon32_256x16x1.c
+stream_neon32_256x1x1.c
 stream_raw_256x32x128.c
+stream_raw_256x16x1.c
+stream_raw_256x1x1.c
 archive_for_target.sh
 README_TARGET_BUILD.TXT
 README_TARGET.TXT
@@ -51,6 +57,8 @@ run_fft_256x32.sh
 run_fft_256x32x128.sh
 run_fft_4096.sh
 run_stream_256x32x128.sh
+run_stream_256x16x1.sh
+run_stream_256x1x1.sh
 setup_target_fft_env.sh
 target_build_all.sh
 target_build_app.sh
